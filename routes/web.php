@@ -43,6 +43,7 @@ Route::middleware('auth')->group( function(){
         Route::post('/kelas/store', 'store')->name('kelas.store');
         Route::post('/kelas/update/{id}', 'update')->name('kelas.update');
         Route::get('/kelas/delete/{id}', 'delete')->name('kelas.delete');
+        Route::get('/kelas/detail/{id}', 'detail')->name('kelas.detail');
     });
     Route::controller(SiswaController::class)->group(function (){
         Route::get('/siswa', 'index')->name('siswa');

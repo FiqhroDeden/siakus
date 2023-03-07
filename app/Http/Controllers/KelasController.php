@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -40,5 +41,15 @@ class KelasController extends Controller
         $nama = $kelas->nama;
         $kelas->delete();
         return redirect()->route('kelas')->with('success', "Kelas <b> $nama </b> Berhasil dihapus");
+    }
+    public function detail($id)
+    {
+        $kelas = Kelas::find($id);
+
+        return view('kelas.detail', [
+            'title'     => 'Detail Kelas'.''. $kelas->nama,
+            'kelas'     => $kelas,
+            'siswa'     => Siswa::where('id_kelas', $kelas->id)->get()
+        ]);
     }
 }

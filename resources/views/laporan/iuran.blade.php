@@ -131,181 +131,246 @@
                                     <thead>
                                         <tr>                                
                                             <th data-ordering="false">Bulan</th>         
+                                            <th>Tanggal Pembayaran</th>
                                             <th >Jumlah Pembayaran</th>                                                                    
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        
                                         <tr>
                                             <td>Januari</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($januari->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($januari->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($januari->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_januari->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($januari->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Februari</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($februari->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($februari->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($februari->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_februari->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($februari->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                             
                                         </tr>
                                         <tr>
                                             <td>Maret</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($maret->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($maret->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($maret->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_maret->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($maret->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>April</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($april->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($april->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($april->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_april->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($april->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Mei</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($mei->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($mei->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($mei->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_mei->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($mei->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Juni</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($juni->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($juni->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($juni->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_juni->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($juni->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Juli</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($juli->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($juli->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($juli->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_juli->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($juli->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Agustus</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($agustus->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($agustus->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($agustus->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_agustus->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($agustus->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>September</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($september->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($september->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($september->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_september->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($september->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Oktober</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($oktober->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($oktober->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($oktober->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_oktober->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($oktober->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>November</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($november->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($november->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($november->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_november->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($november->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
                                         <tr>
                                             <td>Desember</td>
-                                            <td>
-                                                @if (Route::current()->getName() == 'laporan.iuran.filter')  
-                                                    @if($desember->sum('jumlah_masuk') == 0)
-                                                        -
-                                                    @else
-                                                        {{ number_format($desember->sum('jumlah_masuk'),2,',','.') }}
-                                                    @endif
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($desember->sum('jumlah_masuk') == 0)
+                                                    <td>-</td>
+                                                    <td>-</td>
                                                 @else
-                                                    -
-                                                @endif                                            
-                                            </td>
+                                                    <td>{{ date('d-m-Y', strtotime($tp_desember->tanggal_pemasukan)) }}</td>
+                                                    <td>
+
+                                                        {{ number_format($desember->sum('jumlah_masuk'),2,',','.') }}
+                                                    </td>
+                                                @endif
+                                            @else
+                                                <td>-</td>
+                                                <td>-</td>
+                                            @endif     
                                         </tr>
+                                       
+                                        
                                         
                                     </tbody>
+                                    <tfoot>
+                                        <th>TOTAL</th>
+                                        <th></th>
+                                        <th>
+                                            @if (Route::current()->getName() == 'laporan.iuran.filter')  
+                                                @if($total->sum('jumlah_masuk') == 0)
+                                                @else                                    
+                                                    {{ number_format($total->sum('jumlah_masuk'),2,',','.') }}
+                                                @endif
+                                            @else
+                                            @endif 
+                                        </th>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

@@ -65,7 +65,14 @@
                                                     <i class="ri-more-fill align-middle"></i>
                                                 </button>
                                                 <ul class="dropdown-menu dropdown-menu-end">                                                
-                                                    <li><a type="button" data-bs-toggle="modal" data-bs-target="#editKelas-{{ $k->id }}" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                    <li>
+                                                        <a type="button" href="{{ route('kelas.detail', $k->id) }}"  class="dropdown-item edit-item-btn"> 
+                                                        <i class="ri-eye-fill align-bottom me-2 text-muted"></i> Detail</a>
+                                                    </li>
+                                                    <li>
+                                                        <a type="button" data-bs-toggle="modal" data-bs-target="#editKelas-{{ $k->id }}" class="dropdown-item edit-item-btn"> 
+                                                        <i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
+                                                    </li>
                                                     <li>
                                                         <a type="button" data-bs-toggle="modal" data-bs-target="#deleteKelas-{{ $k->id }}" class="dropdown-item remove-item-btn">
                                                             <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
@@ -73,6 +80,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
+                                            
                                         </td>
                                     </tr>
                                     <!-- Default Modals -->
