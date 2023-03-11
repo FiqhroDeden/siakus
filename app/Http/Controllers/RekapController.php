@@ -94,8 +94,7 @@ class RekapController extends Controller
     public function pengeluaran()
     {
         return view('rekap.pengeluaran', [
-            'title'         => 'Rekap | Pengeluaran',
-            'kategori'      => Kategori::all(),
+            'title'         => 'Rekap | Pengeluaran',      
             'januari'       => Pengeluaran::whereMonth('tanggal_pengeluaran', 1)->whereYear('tanggal_pengeluaran', 2023)->get(),
             'februari'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 2)->whereYear('tanggal_pengeluaran', 2023)->get(),
             'maret'         => Pengeluaran::whereMonth('tanggal_pengeluaran', 3)->whereYear('tanggal_pengeluaran', 2023)->get(),
@@ -107,7 +106,10 @@ class RekapController extends Controller
             'september'     => Pengeluaran::whereMonth('tanggal_pengeluaran', 9)->whereYear('tanggal_pengeluaran', 2023)->get(),
             'oktober'       => Pengeluaran::whereMonth('tanggal_pengeluaran', 10)->whereYear('tanggal_pengeluaran', 2023)->get(),
             'november'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 11)->whereYear('tanggal_pengeluaran', 2023)->get(),
-            'desember'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 12)->whereYear('tanggal_pengeluaran', 2023)->get(),                        
+            'desember'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 12)->whereYear('tanggal_pengeluaran', 2023)
+                                ->get(),
+            'kategori'      => Kategori::where('jenis_kategori', '!=', 1)->where('jenis_kategori', '!=', 6)->get(),
+            'tahun'         => 2023
         ]);
     }
     public function pengeluaran_filter(Request $request)
@@ -115,7 +117,7 @@ class RekapController extends Controller
         $tahun = $request->tahun;
         return view('rekap.pengeluaran', [
             'title'         => 'Rekap | Pengeluaran',
-            'kategori'      => Kategori::all(),
+
             'januari'       => Pengeluaran::whereMonth('tanggal_pengeluaran', 1)->whereYear('tanggal_pengeluaran', $tahun)->get(),
             'februari'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 2)->whereYear('tanggal_pengeluaran', $tahun)->get(),
             'maret'         => Pengeluaran::whereMonth('tanggal_pengeluaran', 3)->whereYear('tanggal_pengeluaran', $tahun)->get(),
@@ -127,7 +129,8 @@ class RekapController extends Controller
             'september'     => Pengeluaran::whereMonth('tanggal_pengeluaran', 9)->whereYear('tanggal_pengeluaran', $tahun)->get(),
             'oktober'       => Pengeluaran::whereMonth('tanggal_pengeluaran', 10)->whereYear('tanggal_pengeluaran', $tahun)->get(),
             'november'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 11)->whereYear('tanggal_pengeluaran', $tahun)->get(),
-            'desember'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 12)->whereYear('tanggal_pengeluaran', $tahun)->get(),      
+            'desember'      => Pengeluaran::whereMonth('tanggal_pengeluaran', 12)->whereYear('tanggal_pengeluaran', $tahun)->get(), 
+            'kategori'      => Kategori::where('jenis_kategori', '!=', 1)->where('jenis_kategori', '!=', 6)->get(),     
             'tahun'         => $tahun                  
         ]);
     }

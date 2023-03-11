@@ -95,7 +95,7 @@
                                         <th data-ordering="false">Jenis</th>
                                         <th >Keterangan</th>
                                         
-                                        {{-- <th >Action</th> --}}
+                                        <th >Action</th>
                                         
                                     </tr>
                                 </thead>
@@ -114,7 +114,7 @@
                                         </td>
                                         <td>{{ $l->keterangan }}</td>
                                                                                                
-                                        {{-- <td>
+                                        <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     <i class="ri-more-fill align-middle"></i>
@@ -128,7 +128,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                     <!-- Default Modals -->
                                     <div id="editLabaRugi-{{ $l->id }}" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

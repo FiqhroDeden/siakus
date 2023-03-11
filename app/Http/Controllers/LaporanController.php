@@ -69,6 +69,9 @@ class LaporanController extends Controller
             'title'     => 'Laporan | Laba Rugi',
             'pengeluaran'   => Pengeluaran::whereYear('tanggal_pengeluaran',2023)->get(),
             'pemasukan'     => Pemasukan::whereYear('tanggal_pemasukan',2023)->get(),
+            'kategori_pemasukan'    => Kategori::where('jenis_kategori', 6 )->get(),
+            'kategori_pengeluaran'  => Kategori::where('jenis_kategori', 7)->get(),
+            'tahun' => 2023
          ]);  
     }
 
@@ -78,17 +81,21 @@ class LaporanController extends Controller
             'title'     => 'Laporan | Laba Rugi',
             'pengeluaran'   => Pengeluaran::whereYear('tanggal_pengeluaran',$request->tahun)->get(),
             'pemasukan'     => Pemasukan::whereYear('tanggal_pemasukan',$request->tahun)->get(),
+            'kategori_pemasukan'    => Kategori::where('jenis_kategori', 6 )->get(),
+            'kategori_pengeluaran'  => Kategori::where('jenis_kategori', 7)->get(),
             'tahun'         => $request->tahun
          ]); 
     }
 
     public function neraca()
     {
+        
         return view('laporan.neraca', [
             'title'     => 'Laporan | Neraca',
             'pemasukan' => Pemasukan::whereYear('tanggal_pemasukan', 2023)->get(),
             'pengeluaran' => Pengeluaran::whereYear('tanggal_pengeluaran', 2023)->get(),
             'pindah_buku'   => PindahBuku::whereYear('tanggal', 2023)->get(),
+            'kategori'  => Kategori::all(),
             'tahun'     => 2023,
         ]);
     }
@@ -99,6 +106,7 @@ class LaporanController extends Controller
             'pemasukan' => Pemasukan::whereYear('tanggal_pemasukan', $request->tahun)->get(),
             'pengeluaran' => Pengeluaran::whereYear('tanggal_pengeluaran', $request->tahun)->get(),
             'pindah_buku'   => PindahBuku::whereYear('tanggal', $request->tahun)->get(),
+            'kategori'  => Kategori::all(),
             'tahun'     => $request->tahun,
         ]);
     }

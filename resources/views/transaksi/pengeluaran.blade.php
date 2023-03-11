@@ -74,7 +74,7 @@
                                                 <label for="employeeName" class="form-label">Kategori</label>
                                                 <select name="id_kategori" class="select2 form-select" id="" required>
                                                     <option value="">-- Pilih Kategori --</option>
-                                                    @foreach ($kategori->where('jenis_kategori', '!=', 6)->where('jenis_kategori', '!=', 1) as $k)
+                                                    @foreach ($kategori->where('jenis_kategori', '!=', 6) as $k)
                                                     <option value="{{ $k->id }}">{{ $k->nama }}</option>    
                                                     @endforeach
                                                 </select>

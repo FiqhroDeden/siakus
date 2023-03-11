@@ -2,7 +2,6 @@
 @section('content')
 <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -112,76 +111,22 @@
                                         <th width="500">Jumlah</th>
                                     </thead>
                                     <tbody>
+                                       
+                                        @foreach ($kategori_pemasukan as $k )
                                         <tr>
-                                            <td>SPP</td>
-                                            <td>                                               
-                                                @if($pemasukan->where('id_laba_rugi', 24)->sum('jumlah_masuk') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 24)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Uang Gedung</td>
+                                            
+                                            <td>{{ $k->nama }}</td>
                                             <td>
-                                                @if($pemasukan->where('id_laba_rugi', 25)->sum('jumlah_masuk') == 0)
+                                                @if (count($k->pemasukan) == 0 )
                                                     -
                                                 @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 25)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif 
+                                                    
+                                                {{ number_format($k->pemasukan()->whereYear('tanggal_pemasukan', $tahun)
+                                                ->sum('jumlah_masuk'),2,',','.') }}
+                                                @endif
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Uang Seragam dan Buku</td>
-                                            <td>
-                                                @if($pemasukan->where('id_laba_rugi', 26)->sum('jumlah_masuk') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 26)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Uang Pendaftaran</td>
-                                            <td>
-                                                @if($pemasukan->where('id_laba_rugi', 27)->sum('jumlah_masuk') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 27)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Donasi</td>
-                                            <td>
-                                                @if($pemasukan->where('id_laba_rugi', 28)->sum('jumlah_masuk') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 28)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lain-Lain</td>
-                                            <td>
-                                                @if($pemasukan->where('id_laba_rugi', 29)->sum('jumlah_masuk') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 29)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>administrasi</td>
-                                            <td>
-                                                @if($pemasukan->where('id_laba_rugi', 30)->sum('jumlah_masuk') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pemasukan->where('id_laba_rugi', 30)->sum('jumlah_masuk'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                         <tr>
                                             <td><b>Total Pendapatan</b></td>
                                             <td><b>
@@ -200,107 +145,23 @@
                                             <td><b>Pengeluaran</b></td>
                                             <td><b>Jumlah</b></td>
                                         </tr>
+                                        @foreach ($kategori_pengeluaran as $k)
+                                                                                    
                                         <tr>
-                                            <td>Beban Gaji dan Upah</td>
+                                            <td>{{ $k->nama }}</td>
                                             <td>
-                                                @if($pengeluaran->where('id_kategori', 31)->sum('jumlah_pengeluaran') == 0)
+                                                
+                                                @if(count($k->pengeluaran) == 0)
                                                     -
                                                 @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 31)->sum('jumlah_pengeluaran'),2,',','.') }}
+                                                    {{ number_format($k->pengeluaran()->whereYear('tanggal_pengeluaran', 2023)
+                                                    ->sum('jumlah_pengeluaran'),2,',','.') }}
                                                 @endif 
                                             </td>
                                             
                                         </tr>
-                                        <tr>
-                                            <td>Beban Air/Listrik/Telepon</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 32)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 32)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Administrasi</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 33)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 33)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Iuran Bulanan</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 34)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 34)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Perbaikan</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 35)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 35)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban BPJS</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 36)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 36)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Bahan Habis Pakai</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 37)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 37)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Acara Rapat</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 38)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 38)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Kegiatan Sekolah</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 39)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 39)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Beban Administrasi bank</td>
-                                            <td>
-                                                @if($pengeluaran->where('id_kategori', 40)->sum('jumlah_pengeluaran') == 0)
-                                                    -
-                                                @else
-                                                    {{ number_format($pengeluaran->where('id_kategori', 40)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                @endif 
-                                            </td>
-                                        </tr>
+                                        @endforeach
+                                        
                                         <tr>
                                             <td><b>Total Pengeluaran</b></td>
                                             <td><b>

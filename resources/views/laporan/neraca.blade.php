@@ -123,153 +123,56 @@
                                                     <td><b>Aktiva Lancar</b></td>
                                                     <td></td>
                                                 </tr>
-                                                <tr>
-                                                    
-                                                    <td>Kas Kecil</td>
+                                                <?php $total_aktiva_lancar = 0 ?>
+                                                @foreach ($kategori->where('jenis_kategori', 1) as $k)           
+                                                <tr>                                                    
+                                                    <td>{{ $k->nama }}</td>
                                                     <td align="right">
-                                                        
-                                                        <?php $p_1 = $pemasukan->where('id_neraca', 1)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 1)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 1)->sum('jumlah') + $pindah_buku->where('to', 1)->sum('jumlah') ?>
-
-                                                        @if($pemasukan->where('id_neraca', 1)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 1)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 1)->sum('jumlah') + $pindah_buku->where('to', 1)->sum('jumlah') == 0)
-                                                        -
+                                                        @if(count($k->neraca_pemasukan) == 0 && count($k->neraca_pengeluaran) == 0 && count($k
+                                                        ->pindah_buku) == 0 && count($k->pengeluaran) == 0)
+                                                            -
                                                         @else
-                                                            
-                                                            {{ number_format($pemasukan->where('id_neraca', 1)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 1)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 1)->sum('jumlah') + $pindah_buku->where('to', 1)->sum('jumlah'),2,',','.') }}
-                                                        @endif                                                         
-                                                        
-                                                         
+                                                            <?php $total = $k->neraca_pemasukan()->whereYear('tanggal_pemasukan', $tahun)
+                                                            ->sum('jumlah_masuk') - $k
+                                                            ->neraca_pengeluaran()->whereYear('tanggal_pengeluaran', $tahun)
+                                                            ->sum('jumlah_pengeluaran') + $k->pengeluaran()
+                                                            ->whereYear('tanggal_pengeluaran', $tahun)->sum('jumlah_pengeluaran') + $k
+                                                            ->pindah_buku()->whereYear('tanggal', $tahun)
+                                                            ->sum('jumlah') ?>
+
+                                                            {{ number_format($total,2,',','.') }}
+                                                            <?php $total_aktiva_lancar += $total ?>
+                                                        @endif
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Kas</td>
-                                                    <td align="right">
-                                                        
-                                                        <?php $p_2 = $pemasukan->where('id_neraca', 2)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 2)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 2)->sum('jumlah') + $pindah_buku->where('to', 2)->sum('jumlah') ?>
-
-                                                        @if($pemasukan->where('id_neraca', 2)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 2)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 2)->sum('jumlah') + $pindah_buku->where('to', 2)->sum('jumlah') == 0)
-                                                        -
-                                                        @else
-                                                            
-                                                            {{ number_format($pemasukan->where('id_neraca', 2)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 2)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 2)->sum('jumlah') + $pindah_buku->where('to', 2)->sum('jumlah'),2,',','.') }}
-                                                        @endif 
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Bank Arta Graha</td>
-                                                    <td align="right">
-                                                        
-                                                        <?php $p_3 = $pemasukan->where('id_neraca', 3)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 3)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 3)->sum('jumlah') + $pindah_buku->where('to', 3)->sum('jumlah') ?>
-
-                                                        @if($pemasukan->where('id_neraca', 3)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 3)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 3)->sum('jumlah') + $pindah_buku->where('to', 3)->sum('jumlah') == 0)
-                                                        -
-                                                        @else
-                                                            
-                                                            {{ number_format($pemasukan->where('id_neraca', 3)->sum('jumlah_masuk') - $pengeluaran->where('id_rekening', 3)->sum('jumlah_pengeluaran') - $pindah_buku->where('from', 3)->sum('jumlah') + $pindah_buku->where('to', 3)->sum('jumlah'),2,',','.') }}
-                                                        @endif  
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rekening 2</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Rekening 3</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Piutang 1</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Piutang 2</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Piutang 3</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Piutang 4</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Piutang Lain-Lain</td>
-                                                    <td></td>
-                                                </tr>
+                                                @endforeach
                                                 <tr>
                                                     <td><b>Aktiva Tetap</b></td>
                                                     <td></td>
                                                 </tr>
+                                                <?php $total_aktiva_tetap = 0 ?>
+                                                @foreach ($kategori->where('jenis_kategori', 2) as $k)
+                                                    
                                                 <tr>
-                                                    <td>Aset Komputer dan Peralatan Elektronik</td>
+                                                    <td>{{ $k->nama }}</td>
                                                     <td align="right">
-
-                                                        <?php $p_11 = $pengeluaran->where('id_kategori', 11)->sum('jumlah_pengeluaran') ?>
-
-                                                        @if($pengeluaran->where('id_kategori', 11)->sum('jumlah_pengeluaran') == 0)
+                                                        @if(count($k->pengeluaran) == 0)
                                                             -
                                                         @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 11)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                        @endif  
+                                                            <?php $total = $k->pengeluaran()->whereYear('tanggal_pengeluaran', $tahun)
+                                                            ->sum('jumlah_pengeluaran') ?>
+                                                            {{ number_format($total,2,',','.') }}
+                                                            <?php $total_aktiva_tetap += $total ?>
+                                                        @endif
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Aset Mesin Usaha</td>
-                                                    <td align="right">
-                                                        
-                                                        <?php $p_12 = $pengeluaran->where('id_kategori', 12)->sum('jumlah_pengeluaran') ?>
-
-                                                        @if($pengeluaran->where('id_kategori', 12)->sum('jumlah_pengeluaran') == 0)
-                                                            -
-                                                        @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 12)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                        @endif  
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Aset Furnitur</td>
-                                                    <td align="right">
-                                                        
-                                                        <?php $p_13 = $pengeluaran->where('id_kategori', 13)->sum('jumlah_pengeluaran') ?>
-
-                                                        @if($pengeluaran->where('id_kategori', 13)->sum('jumlah_pengeluaran') == 0)
-                                                            -
-                                                        @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 13)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                        @endif  
-                                                    </td>
-                                                </tr>                                                
-                                                <tr>
-                                                    <td>Aset Kendaraan Bermotor</td>
-                                                    <td align="right">
-                                                        
-                                                        <?php $p_14 = $pengeluaran->where('id_kategori', 14)->sum('jumlah_pengeluaran') ?>
-
-                                                        @if($pengeluaran->where('id_kategori', 14)->sum('jumlah_pengeluaran') == 0)
-                                                            -
-                                                        @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 14)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                        @endif  
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Aset Renovasi dan Prasarana Gedung</td>
-                                                    <td align="right">
-                                                        
-                                                        <?php $p_15 = $pengeluaran->where('id_kategori', 15)->sum('jumlah_pengeluaran') ?>
-
-                                                        @if($pengeluaran->where('id_kategori', 15)->sum('jumlah_pengeluaran') == 0)
-                                                            -
-                                                        @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 15)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                        @endif  
-                                                    </td>
-                                                </tr>                                                 
+                                                @endforeach
+                                                                                             
                                             </tbody>
                                             <tfoot align="right">
                                                 <th>TOTAL AKTIVA</th>
                                                 <th >
-                                                     {{ number_format($p_1 + $p_2 + $p_3 + $p_11 + $p_12 + $p_13 + $p_14 + $p_15  ,2,',','.') }}
+                                                     {{ number_format($total_aktiva_lancar + $total_aktiva_tetap,2,',','.') }}
                                                 </th>
                                             </tfoot>
                                         </table>                                        
@@ -287,41 +190,54 @@
                                                     <td><b>Utang Lancar</b></td>
                                                     <td></td>
                                                 </tr>
+                                                 <?php $total_utang = 0  ?>
+                                                @foreach ($kategori->where('jenis_kategori', 3) as $k)
                                                 <tr>
-                                                    <td>Utang Usaha 1</td>
-                                                    <td></td>
+                                                    <td>{{ $k->nama }}</td>
+                                                    <td align="right">
+                                                        @if(count($k->pengeluaran) == 0)
+                                                            -
+                                                        @else
+                                                            <?php $total = $k->pengeluaran()->whereYear('tanggal_pengeluaran', $tahun)
+                                                            ->sum('jumlah_pengeluaran') ?>
+                                                            {{ number_format($total,2,',','.') }}
+                                                            <?php $total_utang += $total ?>
+                                                        @endif
+                                                    </td>
                                                 </tr>
+                                                @endforeach
                                                 <tr>
-                                                    <td>Utang Usaha 2</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td height="100%"><br></td>
+                                                    <td><br></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td><b>Utang Bank</b></td>
-                                                    <td></td>
+                                                    <td>
+                                                       
+                                                    </td>
                                                 </tr>
+                                                
+                                                @foreach ($kategori->where('jenis_kategori', 4) as $k)
                                                 <tr>
-                                                    <td>Utang Bank 1</td>
-                                                    <td></td>
+                                                    <td>{{ $k->nama }}</td>
+                                                    <td align="right">
+                                                        @if(count($k->pengeluaran) == 0)
+                                                            -
+                                                        @else
+                                                            <?php $total = $k->pengeluaran()->whereYear('tanggal_pengeluaran', $tahun)
+                                                            ->sum('jumlah_pengeluaran') ?>
+                                                            {{ number_format($total,2,',','.') }}
+                                                            <?php $total_utang += $total ?>
+                                                        @endif
+                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Utang Bank 2</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Utang Bank 3</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Utang Bank 4</td>
-                                                    <td></td>
-                                                </tr>
+                                                @endforeach
+                                                
                                                 <tr>
                                                     <td><b>Total Utang</b></td>
-                                                    <td></td>
+                                                    <td align="right">
+                                                        {{ number_format($total_utang,2,',','.') }}
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td><br></td>
@@ -331,43 +247,35 @@
                                                     <td><b>Modal</b></td>
                                                     <td></td>
                                                 </tr>                                                
+                                                <?php $total_modal = 0  ?>
+                                                @foreach ($kategori->where('jenis_kategori', 5) as $k)
                                                 <tr>
-                                                    <td><b>Modal Pemilik</b></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Donasi/Hibah</td>
+                                                    <td>{{ $k->nama }}</td>
                                                     <td align="right">
-                                                        <?php $m_1 = $pengeluaran->where('id_kategori', 20)->sum('jumlah_pengeluaran') ?>
-                                                        @if($pengeluaran->where('id_kategori', 20)->sum('jumlah_pengeluaran') == 0)
-                                                            -
+                                                        @if ($k->id == 22)
+                                                            {{ number_format($pemasukan->sum('jumlah_masuk') - $pengeluaran
+                                                            ->sum('jumlah_pengeluaran'),2,',','.') }}
                                                         @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 20)->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                        @endif 
-                                                    </td>
-                                                </tr>                                        
-                                                <tr>
-                                                    <td>Laba Ditahan</td>
-                                                    <td align="right">
-                                                        <?php $m_2 = $pengeluaran->where('id_kategori', 21)->sum('jumlah_masuk') ?>
-                                                        @if($pengeluaran->where('id_kategori', 21)->sum('jumlah_masuk') == 0)
-                                                            -
-                                                        @else
-                                                            {{ number_format($pengeluaran->where('id_kategori', 21)->sum('jumlah_masuk'),2,',','.') }}
-                                                        @endif  
+                                                            
+                                                            @if(count($k->pengeluaran) == 0)
+                                                                -
+                                                            @else
+                                                                <?php $total = $k->pengeluaran()->whereYear('tanggal_pengeluaran', $tahun)
+                                                                ->sum('jumlah_pengeluaran') ?>
+                                                                {{ number_format($total,2,',','.') }}
+                                                                <?php $total_modal += $total ?>
+                                                            @endif
+
+                                                        @endif
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Laba Tahun Berjalan</td>
-                                                    <td align="right">
-                                                        <?php $m_3 =  $pemasukan->sum('jumlah_masuk') - $pengeluaran->sum('jumlah_pengeluaran')?>
-                                                        {{ number_format($pemasukan->sum('jumlah_masuk') - $pengeluaran->sum('jumlah_pengeluaran'),2,',','.') }}
-                                                    </td>
-                                                </tr>
+                                                @endforeach                                  
+                                                
                                                 <tr>
                                                     <td><b>Total Modal</b></td>
                                                     <td align="right"><b>
-                                                        {{ number_format($m_2 + $m_3 - $m_1,2,',','.') }}    
+                                                        {{ number_format($total_modal + $pemasukan->sum('jumlah_masuk') - $pengeluaran
+                                                            ->sum('jumlah_pengeluaran'),2,',','.') }}
                                                     </b></td>
                                                 </tr>
                                                 
@@ -375,7 +283,8 @@
                                             <tfoot align="right">
                                                 <th>TOTAL PASSIVA</th>
                                                 <th>
-                                                    {{ number_format($m_2 + $m_3 - $m_1,2,',','.') }} 
+                                                    {{ number_format($total_utang + $total_modal + $pemasukan->sum('jumlah_masuk') - $pengeluaran
+                                                            ->sum('jumlah_pengeluaran'),2,',','.') }}
                                                 </th>
                                             </tfoot>
                                         </table>                                        
